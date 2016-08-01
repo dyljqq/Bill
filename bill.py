@@ -7,17 +7,18 @@ import time
 import datetime
 import mysql.connector
 from apscheduler.schedulers.blocking import BlockingScheduler
+import MySQLdb
 
 class Bill(object):
 
     def sendEmail(self, content):
 
-        #发件人的用户名
-        _user = "发件人邮箱"
-        #发件人的密码，如果是qq邮箱，那么请换成口令，并开启服务
-        _pwd  = "输入密码"
-        #收件人邮箱
-         _to   = ["收件人邮箱", "收件人邮箱"]
+        # #发件人的用户名
+        # _user = "发件人邮箱"
+        # #发件人的密码，如果是qq邮箱，那么请换成口令，并开启服务
+        # _pwd  = "输入密码"
+        # #收件人邮箱
+        #  _to   = ["收件人邮箱", "收件人邮箱"]
 
         msg = MIMEText(content, 'plain', 'UTF-8')
         msg["Subject"] = u"关于线下理财加币事项"
@@ -37,13 +38,14 @@ class Bill(object):
             print "Falied,%s"%e
 
     def select(self):
-        conn = mysql.connector.connect(user='root', password='root', database='bill', use_unicode=True)
-        cursor = conn.cursor()
-        now = self.timeHandler()
-        cursor.execute('select * from bill_info where end_time = %s', (now, ))
-        values = cursor.fetchall()
-        cursor.close()
-        self.dataHandler(values)
+        print "aaa"
+        # conn = mysql.connector.connect(user='root', password='root', database='bill', use_unicode=True)
+        # cursor = conn.cursor()
+        # now = self.timeHandler()
+        # cursor.execute('select * from bill_info where end_time = %s', (now, ))
+        # values = cursor.fetchall()
+        # cursor.close()
+        # self.dataHandler(values)
 
     # get yesterday time
     def timeHandler(self):
@@ -69,7 +71,7 @@ class Bill(object):
             formula = money + "*" + rate + "%*" + days + "/365" + "=" + interest + "元"
             s = str(value[1]) + "线下委托理财" + money + "万元， 年化收益" + rate + "%, 投资起算日" + startTime + ", 投资天数" + days + "天，到期利息" + formula + "."
             content = content + s + "\n"
-        self.sendEmail(content)
+        # self.sendEmail(content)
 
 def send():
     bill = Bill()
