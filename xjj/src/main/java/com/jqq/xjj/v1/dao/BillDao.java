@@ -47,4 +47,9 @@ public class BillDao extends JdbcTemplateDao {
 		return this.getManageTemplate().queryForObject(sql, Integer.class);
 	}
 	
+	public boolean delete(int uid) {
+		String sql = "delete from bill_info where uid = ? limit 1";
+		return this.getManageTemplate().update(sql, uid) != 0;
+	}
+	
 }

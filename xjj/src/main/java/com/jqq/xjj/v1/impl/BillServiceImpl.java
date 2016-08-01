@@ -56,5 +56,13 @@ public class BillServiceImpl implements BillService {
 		result.put("list", dao.find(status, pageIndex, 20));
 		return result.toResult();
 	}
+
+	@POST
+	@Path("delete")
+	public Result delete(@FormParam("uid") int uid) {
+		// TODO Auto-generated method stub		
+		BillDao dao = new BillDao();
+		return dao.delete(uid) ? new Result() : new Result(ErrorCode.ERROR_DELETE, "删除失败");
+	}
 	
 }

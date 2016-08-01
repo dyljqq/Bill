@@ -7,10 +7,12 @@ import java.util.Date;
 public class TimeUtility {
 	
 	public static String getTimeStamp(String timeStamp, int days) {
+		System.out.println(Long.parseLong(timeStamp));
+		System.out.println(calculateDay(days));
 		return String.valueOf(Long.parseLong(timeStamp) + calculateDay(days));
 	}
 	
-	public static long calculateDay(int days) {
+	public static long calculateDay(long days) {
 		return days * 24 * 60 * 60 * 1000;
 	}
 	

@@ -4,4 +4,6 @@ public class ErrorCode {
 	
 	public final static int Error = 1;
 	
+	public final static int ERROR_DELETE = 1000;
+	
 }

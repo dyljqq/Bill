@@ -11,18 +11,20 @@ Lay.package(function (using, L) {
   }
 
   var pager
+  var status = STATUS.WAITING_PAY
   $(function() {
-    query(STATUS.WAITING_PAY)
+    query(status)
 
     $("#btnSwitch").click(function() {
       var text = $("#btnSwitch").html()
       if(text == "待还款") {
         $("#btnSwitch").html("已还款");
-        query(STATUS.ALREADY_PAY)
+        status = STATUS.ALREADY_PAY
       } else {
         $("#btnSwitch").html("待还款");
-        query(STATUS.WAITING_PAY)
+        status = STATUS.WAITING_PAY
       }
+      query(status)
     })
 
     $("#btnAdd").click(function() {
@@ -58,6 +60,19 @@ Lay.package(function (using, L) {
     })
     pager.init()
   }
+
+  $(document).on('click', '.js_delete', function() {
+    var uid = $(this).data('id')
+    L.call(L.infs.bill.delete, {
+      "uid": uid
+    }, function(code, data) {
+      if(code == 0) {
+        query(status)
+      } else {
+        console.log("删除失败");
+      }
+    })
+  })
 
   function bind(data) {
     var tempRow = $("#tempRow").html()

@@ -15,6 +15,10 @@ Lay.package(function (using, L){
       query: {
         url: rootApi + '/v1/bill/query',
         type: 'post'
+      },
+      delete: {
+        url: rootApi + '/v1/bill/delete',
+        type: 'post'
       }
     }
   }

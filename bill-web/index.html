@@ -34,6 +34,7 @@
                 <th>到期天数</th>
                 <th>到期利息</th>
                 <th>备注</th>
+                <th>操作</th>
             </tr>
             </thead>
             <tbody>
@@ -64,6 +65,13 @@
         <td>{{days}}</td>
         <td>{{interest}}</td>
         <td>{{note}}</td>
+        <td>
+          <ul class="list-inline">
+            <li>
+                <a href="#" class="js_delete" data-id="{{uid}}">删除</a>
+            </li>
+          </ul>
+        </td>
     </tr>
     {{/list}}
 </script>
