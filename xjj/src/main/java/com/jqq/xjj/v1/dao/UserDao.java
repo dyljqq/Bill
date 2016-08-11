@@ -50,4 +50,9 @@ public class UserDao extends JdbcTemplateDao{
 		return this.getManageTemplate().update(sql, uid);
 	}
 	
+	public boolean exist(String sid) {
+		String sql = "select count(sid) from user where sid = ?";
+		return this.getManageTemplate().queryForObject(sql, new Object[]{sid}, Integer.class) > 0;
+	}
+	
 }

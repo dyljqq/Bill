@@ -41,4 +41,5 @@
 	<bean name="billService" class="com.jqq.xjj.v1.impl.BillServiceImpl" />
 	<bean name="userService" class="com.jqq.xjj.v1.impl.UserServiceImpl" />
 	<bean name="cartService" class="com.jqq.xjj.v1.impl.CartServiceImpl" />
+	<bean name="bookService" class="com.jqq.xjj.v1.impl.BookServiceImpl" />
 </beans>

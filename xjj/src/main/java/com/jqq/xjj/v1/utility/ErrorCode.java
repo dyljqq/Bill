@@ -4,6 +4,9 @@ public class ErrorCode {
 	
 	public final static int Error = 1;
 	
+	// 未登陆
+	public final static int ERROR_LOGIN = -1;
+	
 	public final static int ERROR_DELETE = 1000;
 	
 	public final static int INSERT_ERROR = 2000;

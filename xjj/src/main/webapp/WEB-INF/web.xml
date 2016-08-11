@@ -4,6 +4,10 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+  	<context-param>
+		<param-name>resteasy.providers</param-name>
+		<param-value>com.jqq.xjj.v1.extension.AuthInterceptor</param-value>
+	</context-param>
 	<context-param>
             <param-name>webAppRootKey</param-name>
             <param-value>jqq_xjj</param-value>
