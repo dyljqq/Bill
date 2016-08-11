@@ -60,7 +60,8 @@ public class BillServiceImpl implements BillService {
 	@POST
 	@Path("delete")
 	public Result delete(@FormParam("uid") int uid) {
-		// TODO Auto-generated method stub		
+		// TODO Auto-generated method stub
+		System.out.println("uid" + uid);
 		BillDao dao = new BillDao();
 		return dao.delete(uid) ? new Result() : new Result(ErrorCode.ERROR_DELETE, "删除失败");
 	}
