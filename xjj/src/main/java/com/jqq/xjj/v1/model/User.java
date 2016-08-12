@@ -6,7 +6,14 @@ public class User {
 	private String name;
 	private String password;
 	private String token;
+	private String nickName;
 	
+	public String getNickName() {
+		return nickName;
+	}
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
+	}
 	public int getUid() {
 		return uid;
 	}

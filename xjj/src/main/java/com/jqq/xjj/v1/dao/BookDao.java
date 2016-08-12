@@ -18,9 +18,9 @@ public class BookDao extends JdbcTemplateDao {
 		return keyHolder.getKey().intValue();
 	}
 	
-	public List<Map<String, Object>> query(String sid, int page, int pageSize) {
-		String sql = "select * from book limit ?, ?";
-		return this.getManageTemplate().queryForList(sql, page, pageSize);
+	public List<Map<String, Object>> query(int uid, int start, int end) {
+		String sql = "select * from book where uid=? limit ?, ?";
+		return this.getManageTemplate().queryForList(sql, uid, start, end);
 	}
 	
 }

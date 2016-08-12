@@ -56,7 +56,8 @@ public class AuthInterceptor implements ContainerRequestFilter {
 			System.out.println("通用参数校验 ----");
 			if (request.getParameter("sid") == null) {
 				System.out.println("----");
-            	ctx.abortWith(Response.status(Response.Status.BAD_REQUEST).build());
+//            	ctx.abortWith(Response.status(Response.Status.BAD_REQUEST).build());
+				showError(ctx, ErrorCode.ERROR_USER_NOT_EXIST, "用户不存在");
 			} else{
 				UserDao dao = new UserDao();
 				if (!dao.exist(request.getParameter("sid"))) {

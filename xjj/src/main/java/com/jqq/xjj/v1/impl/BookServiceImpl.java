@@ -39,11 +39,13 @@ public class BookServiceImpl implements BookService {
 	
 	@POST
 	@Path("query")
-	public Result query(@FormParam("sid") String sid,
+	public Result query(@FormParam("uid") int uid,
 						@FormParam("page") int page, 
 						@FormParam("pageSize") int pageSize) {
 		BookDao dao = new BookDao();
-		List<Map<String, Object>> list = dao.query(sid, page, pageSize);
+		int start = (page - 1) * pageSize;
+		int end = page * pageSize - 1;
+		List<Map<String, Object>> list = dao.query(uid, start, end);
 		return list != null ? new Result(list) : new Result(ErrorCode.Error, "查询失败");
 	}
 

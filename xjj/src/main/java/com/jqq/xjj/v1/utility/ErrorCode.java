@@ -11,4 +11,7 @@ public class ErrorCode {
 	
 	public final static int INSERT_ERROR = 2000;
 	
+	// 查找不到用户
+	public final static int ERROR_USER_NOT_EXIST = 10000;
+	
 }

@@ -18,4 +18,10 @@ public interface UserService {
 	// 退出登陆
 	public Result logout(int uid);
 	
+	// 修改用户名
+	public Result alterName(int uid, String nickName);
+	
+	// 修改密码
+	public Result alterPassword(int uid, String password, String newPassword);
+	
 }

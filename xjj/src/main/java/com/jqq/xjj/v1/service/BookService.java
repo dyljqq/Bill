@@ -23,6 +23,6 @@ public interface BookService {
 	 * @param pageSize
 	 * @return
 	 */
-	public Result query(String sid, int page, int pageSize);
+	public Result query(int uid, int page, int pageSize);
 	
 }

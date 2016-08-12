@@ -55,4 +55,23 @@ public class UserDao extends JdbcTemplateDao{
 		return this.getManageTemplate().queryForObject(sql, new Object[]{sid}, Integer.class) > 0;
 	}
 	
+	public int updateName(int uid, String nickName) {
+		String sql = "update user set nick_name = ? where uid = ?";
+		return this.getManageTemplate().update(sql, nickName, uid);
+	}
+	
+	public int updatePassword(int uid, String password, String newPassword) {
+		String sql = "select count(uid) from user where uid = ? and password = ?";
+		if(this.getManageTemplate().queryForObject(sql, new Object[]{uid, password}, Integer.class) > 0) {
+			sql = "update user set password = ? where uid = ?";
+			return this.getManageTemplate().update(sql, password, uid);
+		}
+		return 0;
+	}
+	
+	public boolean isExist(String name) {
+		String sql = "select * from user where name = ?";
+		return this.getManageTemplate().queryForMap(sql, name) != null;
+	}
+	
 }
