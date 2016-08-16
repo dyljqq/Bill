@@ -14,7 +14,7 @@ public interface BookService {
 	 * @param desc
 	 * @return
 	 */
-	public Result add(String name, String author, double price, double rate, String image, String desc, String sid);
+	public Result add(String name, String author, double price, double rate, String image, String desc, int type, int uid);
 	
 	/**
 	 * 查询
@@ -23,6 +23,6 @@ public interface BookService {
 	 * @param pageSize
 	 * @return
 	 */
-	public Result query(int uid, int page, int pageSize);
+	public Result query(int uid, int type, int page, int pageSize);
 	
 }

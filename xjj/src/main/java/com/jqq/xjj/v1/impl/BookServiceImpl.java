@@ -12,6 +12,7 @@ import javax.ws.rs.core.MediaType;
 import com.jqq.xjj.v1.dao.BookDao;
 import com.jqq.xjj.v1.service.BookService;
 import com.jqq.xjj.v1.utility.ErrorCode;
+import com.jqq.xjj.v1.utility.Utility;
 import com.laylib.common.model.Result;
 
 import io.netty.util.internal.StringUtil;
@@ -28,24 +29,34 @@ public class BookServiceImpl implements BookService {
 					  @FormParam("rate") double rate, 
 					  @FormParam("image") String image, 
 					  @FormParam("desc") String desc,
-					  @FormParam("sid") String sid) {
-		if (StringUtil.isNullOrEmpty(sid)) {
-			return new Result(ErrorCode.ERROR_LOGIN, "请先登陆");
-		}
+					  @FormParam("type") int type,
+					  @FormParam("uid") int uid) {
 		BookDao dao = new BookDao();
-		int bid = dao.insert(name, author, price, rate, image, desc, sid);
+		// 添加我的藏书
+		if (type == 1) {
+			Map<String, Object> map = Utility.getData(name);
+			image = map.get("image").toString();
+			String r = ((Map<String, Object>)map.get("rating")).get("average").toString();
+			if (r != null) {
+				rate = Float.parseFloat(r);
+			} else {
+				rate = 0.0;
+			}
+		}
+		int bid = dao.insert(name, author, price, rate, image, desc, type, uid);
 		return bid > 0 ? new Result(): new Result(ErrorCode.Error, "书籍添加失败");
 	}
 	
 	@POST
 	@Path("query")
 	public Result query(@FormParam("uid") int uid,
+						@FormParam("type") int type,
 						@FormParam("page") int page, 
 						@FormParam("pageSize") int pageSize) {
 		BookDao dao = new BookDao();
 		int start = (page - 1) * pageSize;
 		int end = page * pageSize - 1;
-		List<Map<String, Object>> list = dao.query(uid, start, end);
+		List<Map<String, Object>> list = dao.query(uid, type, start, end);
 		return list != null ? new Result(list) : new Result(ErrorCode.Error, "查询失败");
 	}
 
